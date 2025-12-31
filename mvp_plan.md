@@ -276,6 +276,34 @@ Week 23-24: Final Polish
 - **Video Player**: Custom player with progress tracking
 - **Payment Integration**: PayPal, Naver Pay, Kakao Pay SDKs
 
+### 1.1. Video Processing Pipeline
+```
+Original MP4 Upload → AWS MediaConvert → Multiple Outputs:
+├── HLS Format (.m3u8 + .ts segments)
+├── Multiple Bitrates (480p, 720p, 1080p)
+├── Adaptive Streaming Ready
+└── Thumbnail Generation
+```
+
+### 1.2. HLS (HTTP Live Streaming) Structure
+```
+movie_123/
+├── master.m3u8          # Master playlist
+├── 480p/
+│   ├── playlist.m3u8    # 480p variant playlist
+│   ├── segment_001.ts   # Video segments (10 seconds each)
+│   ├── segment_002.ts
+│   └── ...
+├── 720p/
+│   ├── playlist.m3u8
+│   ├── segment_001.ts
+│   └── ...
+└── 1080p/
+    ├── playlist.m3u8
+    ├── segment_001.ts
+    └── ...
+```
+
 ### 2. API Gateway
 - **Service**: AWS API Gateway
 - **Features**: Rate limiting, CORS, request routing, authentication
